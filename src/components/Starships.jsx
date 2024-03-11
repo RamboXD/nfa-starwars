@@ -1,6 +1,8 @@
 export const Starships = () => {
   //https://swapi.py4e.com/api/starships
 
+  //https://starwars-visualguide.com/assets/img/starships/2.jpg
+
   return (
     <div className='item-list-layout'>
       <div>
