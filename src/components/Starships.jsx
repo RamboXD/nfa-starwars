@@ -1,19 +1,36 @@
-export const Starships = () => {
-  //https://swapi.py4e.com/api/starships
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-  //https://starwars-visualguide.com/assets/img/starships/2.jpg
+export const Starships = () => {
+  //https://swapi.py4e.com/api/Starships
+  //https://starwars-visualguide.com/assets/img/Starships/2.jpg
+  const [starships, setStarships] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://swapi.py4e.com/api/starships').then((res) => {
+      setStarships(res.data.results);
+    });
+  }, []);
+  console.log(starships);
 
   return (
     <div className='item-list-layout'>
-      <div>
-        <p>length: ...</p>
-        <p>model: ...</p>
-        <p>passengers: ...</p>
-        <p>cost_in_credits: ...</p>
-      </div>
-      <div className='item-image-layout'>
-        <img className='item-image' src={'src'} alt='starship' />
-      </div>
+      {starships.map((starship, index) => (
+        <>
+          <div>
+            <p>name: {starship.name}</p>
+          </div>
+          <div className='item-image-layout'>
+            <img
+              className='item-image'
+              src={`https://starwars-visualguide.com/assets/img/starships/${
+                index + 2
+              }.jpg`}
+              alt='planet'
+            />
+          </div>
+        </>
+      ))}
     </div>
   );
 };
